@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import axion from 'axios';
 export default {
   name: 'register',
   data() {

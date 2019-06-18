@@ -1,6 +1,8 @@
 const functions = require('firebase-functions');
 const firebase = require('firebase-admin');
 const express = require('express');
+const router = express.Router();
+
 
 const firebaseApp = firebase.initializeApp(
     functions.config().firebase
@@ -15,7 +17,7 @@ var db = firebase.firestore();
 var itemsRef = db.collection('users');
 
 
-app.post('/api/users', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         let querySnapshot = await itemsRef.get();
         let numRecords = querySnapshot.docs.length;
@@ -30,7 +32,7 @@ app.post('/api/users', async (req, res) => {
     }
 });
 
-exports.app = functions.https.onRequest(app);
+module.exports = router;
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
